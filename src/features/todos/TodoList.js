@@ -3,7 +3,7 @@ import { getTodos, addTodo, updateTodo, deleteTodo } from "../../api/todosApi"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash, faUpload } from "@fortawesome/free-solid-svg-icons"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { DragDropContext, Draggable } from "react-beautiful-dnd"
 import { StrictModeDroppable as Droppable } from "../../helpers/StrictModeDroppable"
 
@@ -15,10 +15,16 @@ const TodoList = () => {
         isLoading,
         isError,
         error,
-        data: todos
+        data,
     } = useQuery('todos', getTodos, {
         select: data => data.sort((a, b) => b.id - a.id)
     })
+
+    const [todos, updateTodos] = useState(data || [])
+
+    useEffect(() => {
+        updateTodos(data)
+    }, [data])
 
     const addTodoMutation = useMutation(addTodo, {
         onSuccess: () => {
