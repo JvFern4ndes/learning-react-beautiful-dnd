@@ -53,6 +53,18 @@ const TodoList = () => {
         setNewTodo('')
     }
 
+    const handleOnDragEnd = (result) => {
+        if (!result.destination) return
+
+        const tasks = [...todos]
+
+        const [reorderedItem] = tasks.splice(result.source.index, 1)
+
+        tasks.splice(result.destination.index, 0, reorderedItem)
+
+        updateTodos(tasks)
+    }
+
     const newItemSection = (
         <form onSubmit={handleSubmit}>
             <label htmlFor="new-todo">Enter a new todo item</label>
@@ -78,7 +90,7 @@ const TodoList = () => {
         content = <p>{error.message}</p>
     } else {
         content = (
-            <DragDropContext>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId="todos">
                     {(provided) => (
                         <section {...provided.droppableProps} ref={provided.innerRef}>

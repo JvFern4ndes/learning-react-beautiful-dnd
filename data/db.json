@@ -1138,54 +1138,54 @@
       "userId": 10,
       "id": 195,
       "title": "rerum ex veniam mollitia voluptatibus pariatur",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 10,
       "id": 196,
       "title": "consequuntur aut ut fugit similique",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 10,
       "id": 197,
       "title": "dignissimos quo nobis earum saepe",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 10,
       "id": 198,
       "title": "quis eius est sint explicabo",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 10,
       "id": 199,
       "title": "numquam repellendus a magnam",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
       "title": "New todo!",
-      "completed": false,
+      "completed": true,
       "id": 201
     },
     {
       "userId": 1,
       "title": "Learn stuff",
-      "completed": false,
+      "completed": true,
       "id": 202
     },
     {
       "userId": 1,
       "title": "Hey!",
-      "completed": false,
+      "completed": true,
       "id": 203
     },
     {
       "userId": 1,
       "title": "oi",
-      "completed": false,
+      "completed": true,
       "id": 204
     }
   ]
