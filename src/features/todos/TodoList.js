@@ -82,7 +82,21 @@ const TodoList = () => {
 
         tasks.splice(result.destination.index, 0, reorderedItem)
 
+        const idsOrderArray = tasks.map(task => task.id)
+        localStorage.setItem('taskOrder', JSON.stringify(idsOrderArray))
+
         updateTodos(tasks)
+    }
+
+    const handleDelete = (id) => {
+        const arrayIdsOrder = JSON.parse(localStorage.getItem('taskOrder'))
+
+        if (arrayIdsOrder?.length) {
+            const newIdsOrderArray = arrayIdsOrder.filter(num => num !== id)
+            localStorage.setItem('taskOrder', JSON.stringify(newIdsOrderArray))
+        }
+
+        deleteTodoMutation.mutate({ id })
     }
 
     const newItemSection = (
@@ -130,7 +144,7 @@ const TodoList = () => {
                                                     />
                                                     <label htmlFor={todo.id}>{todo.title}</label>
                                                 </div>
-                                                <button className="trash" onClick={() => deleteTodoMutation.mutate({ id: todo.id })}>
+                                                <button className="trash" onClick={() => handleDelete(todo.id)}>
                                                     <FontAwesomeIcon icon={faTrash} />
                                                 </button>
                                             </article>
