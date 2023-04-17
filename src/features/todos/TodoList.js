@@ -23,7 +23,27 @@ const TodoList = () => {
     const [todos, updateTodos] = useState(data || [])
 
     useEffect(() => {
-        updateTodos(data)
+        const arrayIdsOrder = JSON.parse(localStorage.getItem('taskOrder'))
+
+        if (!arrayIdsOrder && data?.length) {
+            const idsOrderArray = data.map(task => task.id)
+            localStorage.setItem('taskOrder', JSON.stringify(idsOrderArray))
+        }
+
+        let myArray
+        if (arrayIdsOrder?.length && data?.length) {
+            myArray = arrayIdsOrder.map(pos => {
+                return data.find(el => el.id === pos)
+            })
+
+            const newItems = data.filter(el => {
+                return !arrayIdsOrder.includes(el.id)
+            })
+
+            if (newItems?.length) myArray = [...newItems, ...myArray]
+        }
+
+        updateTodos(myArray || data)
     }, [data])
 
     const addTodoMutation = useMutation(addTodo, {
